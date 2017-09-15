@@ -7,6 +7,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.IOException;
 
+import static Common.Props.getProps;
+
 /**
  * Created by drygoi on 03.06.17.
  */
@@ -21,9 +23,10 @@ public class DriverPage {
             switch (driverType) {
                 case "firefox":
                     //todo тут менять путь при запуске на другой машине(выставлена настройка для linux машины)
-                    System.setProperty("webdriver.firefox.marionette", "/home/drygoi/IdeaProjects/CucumberForPractise/src/geckodriver");
-                    DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-                    capabilities.setCapability("marionette", true);
+                    System.setProperty("webdriver.gecko.driver", "src/geckodriver.exe");
+//                    System.setProperty("webdriver.firefox.marionette", "src/geckodriver.exe");
+//                    DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+//                    capabilities.setCapability("marionette", true);
                     driver = new FirefoxDriver();
                     driver.manage().window().maximize();
                     break;
@@ -40,7 +43,6 @@ public class DriverPage {
         }
         return driver;
     }
-
 
 
 }

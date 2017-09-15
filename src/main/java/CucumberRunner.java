@@ -8,8 +8,8 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         // нужно заменить директории для работы в Windows.
-        format={"pretty", "html:/home/drygoi/IdeaProjects/CucumberForPractise/src/target/report.html"},
-        features={"/home/drygoi/IdeaProjects/BDD/src/main/resources"},
+//        format={"pretty", "src/target/report.html"},
+        features={"src/main/resources"},
 //      format={"pretty", "html:${HOME}/IdeaProjects/CucumberForPractise/src/target/report.html"},
 //      features={"${HOME}/IdeaProjects/CucumberForPractise/src/main/resources"},
         glue = {"StepsDefinition"},

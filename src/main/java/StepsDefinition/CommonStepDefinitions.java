@@ -4,12 +4,9 @@ import Common.Annotations.ActionTitle;
 import Common.AutotestError;
 import Common.Annotations.PageTitle;
 import Common.ReflectionHelper;
-import com.sun.jna.platform.FileUtils;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import gherkin.lexer.Fi;
 import org.junit.Assert;
 import org.reflections.Reflections;
 
@@ -20,7 +17,6 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.nio.charset.StandardCharsets;
 import java.util.Set;
 
 import static Common.DriverPage.getDriver;
@@ -35,8 +31,9 @@ public class CommonStepDefinitions {
     public static Class Init;
 
     @Given("^Пользователь открывает сайт \"([^\"]+)\"$")
-    public static void openSite(String siteAddress) throws IOException {
+    public static void openSite(String siteAddress) throws IOException, InterruptedException {
         getDriver().get(siteAddress);
+        Thread.sleep(5000);
     }
 
     @Given("^Пользователь открывает браузер на странице тестируемого ресурса")
