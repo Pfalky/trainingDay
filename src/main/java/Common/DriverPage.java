@@ -32,7 +32,7 @@ public class DriverPage {
                     break;
                 case "chrome":
                     //todo тут менять путь при запуске на другой машине(выставлена настройка для windows)
-                    System.setProperty("webdriver.chrome.driver", "C:\\gecko\\chromedriver.exe");
+                    System.setProperty("webdriver.chrome.driver", "src/chromedriver.exe");
                     driver = new ChromeDriver();
                     driver.manage().window().maximize();
                     break;
