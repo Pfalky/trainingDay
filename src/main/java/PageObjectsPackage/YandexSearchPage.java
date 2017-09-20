@@ -2,7 +2,6 @@ package PageObjectsPackage;
 
 import Common.Annotations.PageTitle;
 import Common.Annotations.Title;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -21,12 +20,6 @@ public class YandexSearchPage extends MainPage {
 
     private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
-  /*  WebDriver driver;*/
-  /*
-    public WebDriver getDriver() {
-        return driver;
-    }*/
-
     public YandexSearchPage() throws IOException {
     }
 
@@ -37,7 +30,9 @@ public class YandexSearchPage extends MainPage {
 
 
    @Title(value = "Поле для ввода поискового текста")
-   @FindBy(xpath = "//input[@class='input__control input__input'][@tabindex='2']")
+   @FindBy(xpath = "//input[@aria-label=\"Запрос\"]")
+  // @DisplayName("Human-readable test name")
    private WebElement yandexSearchPage;
+
 
 }

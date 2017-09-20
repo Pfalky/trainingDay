@@ -7,6 +7,13 @@
     <groupId>i-teco_BDD</groupId>
     <artifactId>CucumberForPractise</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <properties>
+            <allure.version>1.4.14</allure.version>
+            <aspectj.version>1.7.4</aspectj.version>
+        <allure.results.directory>${project.basedir}/target/site</allure.results.directory>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
@@ -17,8 +24,34 @@
                     <target>1.7</target>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.20</version>
+                <configuration>
+                    <testFailureIgnore>false</testFailureIgnore>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>io.qameta.allure.junit4.AllureJunit4</value>
+                        </property>
+                    </properties>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
         </plugins>
     </build>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -60,14 +93,28 @@
             <artifactId>reflections</artifactId>
             <version>0.9.10</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/ru.yandex.qatools.allure/allure-maven-plugin -->
+
         <dependency>
-            <groupId>ru.yandex.qatools.allure</groupId>
-            <artifactId>allure-maven-plugin</artifactId>
-            <version>2.2</version>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit4</artifactId>
+            <version>LATEST_VERSION</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
 
+    <reporting>
+        <excludeDefaults>true</excludeDefaults>
+        <plugins>
+            <plugin>
+                <groupId>ru.yandex.qatools.allure</groupId>
+                <artifactId>allure-maven-plugin</artifactId>
+                <configuration>
+                    <resultsDirectory>allure-results</resultsDirectory>
+                </configuration>
+                <version>2.4</version>
+            </plugin>
+        </plugins>
+    </reporting>
 
 </project>
